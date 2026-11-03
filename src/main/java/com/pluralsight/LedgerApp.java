@@ -1,16 +1,23 @@
 package com.pluralsight;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+
 public class LedgerApp {
+    private static final DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    private static final DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HH:mm:ss");
+
     private String description;
     private double amount;
     private String vendor;
-    private int debit;
 
-    public LedgerApp(String description, double amount, String vendor, int debit) {
+
+    public LedgerApp(String description, double amount, String vendor) {
         this.description = description;
         this.amount = amount;
         this.vendor = vendor;
-        this.debit = debit;
+
     }
 
     public String getDescription() {
@@ -25,7 +32,8 @@ public class LedgerApp {
         return vendor;
     }
 
-    public int getDebit() {
-        return debit;
+    @Override
+    public String toString() {
+        return String.format("%s | %s | %s | %.2f | %s", LocalDate.now().format(dateFormat), LocalTime.now().format(timeFormat), description, amount, vendor);
     }
 }
