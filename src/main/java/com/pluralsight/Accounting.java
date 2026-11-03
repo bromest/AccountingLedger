@@ -33,20 +33,18 @@ public static void homeScreen(){
                     addDeposit();
                     break;
                 case "P":
-
+                    break;
                 case "L":
-
+                    break;
                 case "X":
-
+                    break;
                 default:
                     System.out.println("please enter a correct letter");
             }
-        } while (choice.equalsIgnoreCase("X"));
+        } while (!choice.equalsIgnoreCase("X"));
 }
     public static void addDeposit(){
         try {
-            Scanner fileScanner = new Scanner(new FileReader("transactions.csv"));
-
             System.out.print("Please enter the deposit amount: ");
             double amount = input.nextDouble();
             input.nextLine();
@@ -57,11 +55,23 @@ public static void homeScreen(){
             System.out.print("Please enter the deposit vendor: ");
             String vendor = input.nextLine();
 
-            LedgerApp currentDeposite = new LedgerApp(description,amount,vendor);
-            System.out.print(currentDeposite);
+            LedgerApp currentDeposit = new LedgerApp(description,amount,vendor);
+            System.out.print("Deposit: " + currentDeposit);
+
+            writer(currentDeposit);
 
         } catch (Exception e) {
             System.out.println("Error reading products file.");
+        }
+    }
+    public static void writer(LedgerApp currentDeposit){
+        try{
+            BufferedWriter br = new BufferedWriter(new FileWriter("transactions.csv", true));
+            br.write(String.format("%s \n", currentDeposit));
+            br.newLine();
+
+        } catch (Exception e) {
+            System.out.println("Error writing products file.");
         }
     }
 }
