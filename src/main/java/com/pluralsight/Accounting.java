@@ -44,6 +44,17 @@ public static void homeScreen(){
             }
         } while (!choice.equalsIgnoreCase("X"));
 }
+    public static void writer(LedgerApp currentDeposit){
+        try{
+            BufferedWriter br = new BufferedWriter(new FileWriter("transactions.csv", true));
+            String current = currentDeposit.toString();
+            br.write(current);
+            br.newLine();
+            br.close();
+        } catch (Exception e) {
+            System.out.println("Error writing products file.");
+        }
+    }
     public static void addDeposit(){
         try {
             System.out.print("Please enter the deposit amount: ");
@@ -65,21 +76,11 @@ public static void homeScreen(){
             System.out.println("Error reading products file.");
         }
     }
-    public static void writer(LedgerApp currentDeposit){
-        try{
-            BufferedWriter br = new BufferedWriter(new FileWriter("transactions.csv", true));
-            String current = currentDeposit.toString();
-            br.write(current);
-            br.newLine();
-            br.close();
-        } catch (Exception e) {
-            System.out.println("Error writing products file.");
-        }
-    }
+
     public static void payment(){
         try {
             System.out.print("Please enter the payment amount: ");
-            double amount = input.nextDouble();
+            double amount = input.nextDouble()* -1;
             input.nextLine();
 
             System.out.print("Please enter the payment description: ");
