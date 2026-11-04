@@ -18,8 +18,8 @@ public static void homeScreen(){
         do{
             System.out.println(
                     """
-                     === KAL Bank ===
-                     === Welocom ===
+                     \n === KAL Bank ===
+                      === Welocom ===
                      D. Add Deposit
                      P. Make payment
                      L. Ledger
@@ -33,6 +33,7 @@ public static void homeScreen(){
                     addDeposit();
                     break;
                 case "P":
+                    payment();
                     break;
                 case "L":
                     break;
@@ -67,8 +68,30 @@ public static void homeScreen(){
     public static void writer(LedgerApp currentDeposit){
         try{
             BufferedWriter br = new BufferedWriter(new FileWriter("transactions.csv", true));
-            br.write(String.format("%s \n", currentDeposit));
+            String current = currentDeposit.toString();
+            br.write(current);
             br.newLine();
+            br.close();
+        } catch (Exception e) {
+            System.out.println("Error writing products file.");
+        }
+    }
+    public static void payment(){
+        try {
+            System.out.print("Please enter the payment amount: ");
+            double amount = input.nextDouble();
+            input.nextLine();
+
+            System.out.print("Please enter the payment description: ");
+            String description = input.nextLine();
+
+            System.out.print("Please enter the payment vendor: ");
+            String vendor = input.nextLine();
+
+            LedgerApp currentPayment = new LedgerApp(description,amount,vendor);
+            System.out.print("Payment: " + currentPayment);
+
+            writer(currentPayment);
 
         } catch (Exception e) {
             System.out.println("Error writing products file.");
