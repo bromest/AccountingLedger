@@ -1,13 +1,12 @@
 package com.pluralsight;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.*;
+import com.pluralsight.LoadHistory;
 
 public class Accounting {
 
     static Scanner input = new Scanner(System.in);
-    static ArrayList<LedgerApp>  history = new ArrayList<>();
 
     public static void main(String[] args) {
         homeScreen();
@@ -117,7 +116,7 @@ public static void homeScreen(){
             Lchoice = input.nextLine();
             switch (Lchoice){
                 case "A":
-
+                    LoadHistory.displayAll();
                     break;
                 case "D":
 
