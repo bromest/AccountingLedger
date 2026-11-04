@@ -10,7 +10,7 @@ public class LoadHistory {
         history.clear();
 
         try{
-            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            BufferedReader br = new BufferedReader(new FileReader("transactions.csv"));
             String line;
             while ((line = br.readLine()) != null){
 
@@ -28,6 +28,7 @@ public class LoadHistory {
                 }
             }
             br.close();
+            System.out.println(history);
 
         } catch (FileNotFoundException e) {
             System.out.println("No transaction found yet. please try again later.");
@@ -47,6 +48,20 @@ public class LoadHistory {
 
         for(int i = history.size()-1; i>=0 ; i--){
             System.out.println(history.get(i));
+        }
+    }
+    public static void displayDeposit(){
+        loadHistory();
+        System.out.println("\n=== Deposits ===");
+        boolean found = false;
+        for(int i = history.size()-1; i>=0 ; i--){
+            LedgerApp entry = history.get(i);
+            if(entry.getAmount() > 0){
+                System.out.println(entry);
+                found = true;
+            }
+        }if (!found){
+            System.out.println("No deposited transactions found.");
         }
     }
 }

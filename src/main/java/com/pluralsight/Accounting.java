@@ -49,9 +49,13 @@ public static void homeScreen(){
         try{
             BufferedWriter br = new BufferedWriter(new FileWriter("transactions.csv", true));
             String current = currentDeposit.toString();
+
             br.write(current);
+
             br.newLine();
+
             br.close();
+
         } catch (Exception e) {
             System.out.println("Error writing products file.");
         }
@@ -74,6 +78,7 @@ public static void homeScreen(){
             writer(currentDeposit);
 
         } catch (Exception e) {
+            e.printStackTrace();
             System.out.println("Error reading products file.");
         }
     }
@@ -119,7 +124,7 @@ public static void homeScreen(){
                     LoadHistory.displayAll();
                     break;
                 case "D":
-
+                    LoadHistory.displayDeposit();
                     break;
                 case "P":
 

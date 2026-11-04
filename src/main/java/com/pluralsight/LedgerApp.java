@@ -33,7 +33,7 @@ public class LedgerApp {
 
     @Override
     public String toString() {
-        return String.format("%s | %s | %s | %.2f | %s",
+        return String.format("%s | %s | %s | %s | %.2f",
                 LocalDate.now().format(dateFormat),
                 LocalTime.now().format(timeFormat),
                 description,
