@@ -9,11 +9,10 @@ public class LedgerApp {
     private static final DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HH:mm:ss");
 
     private String description;
-    private double amount;
     private String vendor;
+    private double amount;
 
-
-    public LedgerApp(String description, double amount, String vendor) {
+    public LedgerApp(String description, String vendor, double amount) {
         this.description = description;
         this.amount = amount;
         this.vendor = vendor;
@@ -34,6 +33,11 @@ public class LedgerApp {
 
     @Override
     public String toString() {
-        return String.format("%s | %s | %s | %.2f | %s", LocalDate.now().format(dateFormat), LocalTime.now().format(timeFormat), description, amount, vendor);
+        return String.format("%s | %s | %s | %.2f | %s",
+                LocalDate.now().format(dateFormat),
+                LocalTime.now().format(timeFormat),
+                description,
+                vendor,
+                amount);
     }
 }

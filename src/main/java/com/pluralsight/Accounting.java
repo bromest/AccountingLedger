@@ -7,7 +7,7 @@ import java.io.*;
 public class Accounting {
 
     static Scanner input = new Scanner(System.in);
-    static ArrayList<LedgerApp>  A = new ArrayList<>();
+    static ArrayList<LedgerApp>  history = new ArrayList<>();
 
     public static void main(String[] args) {
         homeScreen();
@@ -19,7 +19,7 @@ public static void homeScreen(){
             System.out.println(
                     """
                      \n === KAL Bank ===
-                      === Welocom ===
+                      === Welcome ===
                      D. Add Deposit
                      P. Make payment
                      L. Ledger
@@ -36,8 +36,10 @@ public static void homeScreen(){
                     payment();
                     break;
                 case "L":
+                    ledger();
                     break;
                 case "X":
+                    System.out.println("Thank you for coming! \nGood bye");
                     break;
                 default:
                     System.out.println("please enter a correct letter");
@@ -67,7 +69,7 @@ public static void homeScreen(){
             System.out.print("Please enter the deposit vendor: ");
             String vendor = input.nextLine();
 
-            LedgerApp currentDeposit = new LedgerApp(description,amount,vendor);
+            LedgerApp currentDeposit = new LedgerApp(description,vendor,amount);
             System.out.print("Deposit: " + currentDeposit);
 
             writer(currentDeposit);
@@ -89,13 +91,49 @@ public static void homeScreen(){
             System.out.print("Please enter the payment vendor: ");
             String vendor = input.nextLine();
 
-            LedgerApp currentPayment = new LedgerApp(description,amount,vendor);
+            LedgerApp currentPayment = new LedgerApp(description,vendor,amount);
             System.out.print("Payment: " + currentPayment);
 
             writer(currentPayment);
 
         } catch (Exception e) {
             System.out.println("Error writing products file.");
+        }
+    }
+    public  static void ledger(){
+        String Lchoice;// stands for ledger choice
+        while(true){
+            System.out.println(
+                    """
+                     \n=== Ledger === 
+                     A. All
+                     D. Deposit
+                     P. Payment
+                     R. Exit
+                     H. Home
+                     Choose an option:
+                     """
+            );
+            Lchoice = input.nextLine();
+            switch (Lchoice){
+                case "A":
+
+                    break;
+                case "D":
+
+                    break;
+                case "P":
+
+                    break;
+                case "R":
+
+                    break;
+                case "H":
+                    homeScreen();
+                    break;
+                default:
+                    System.out.println("please enter a correct letter");
+            }
         }
     }
 }
