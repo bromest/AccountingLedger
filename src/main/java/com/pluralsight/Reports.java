@@ -13,7 +13,7 @@ public class Reports {
     do{
         System.out.println(
                 """
-                 \n=== Reports Menu === 
+                 \n=== Reports Menu ===
                  1. Month To Date
                  2. Previous Month
                  3. Year To Date
@@ -43,11 +43,11 @@ public class Reports {
                 byVendor();
                 break;
             case 0:
-                return;
+                break;
             default:
                 System.out.println("please enter a valid option");
         }
-    } while (rChoice != 0);
+    } while (rChoice == 0);
     }
     public static void monthToDate(){
         loadHistory();
@@ -64,15 +64,13 @@ public class Reports {
             String[] section = entry.toString().split("\\|");
             LocalDate entryDate = LocalDate.parse(section[0].trim());
 
-            if(entryDate.isEqual(currentDate)){
-                System.out.println(entry);
 
-                if(entryDate.getDayOfYear() == currentDate.getDayOfYear() &&  entryDate.getMonth() == currentDate.getMonth()) {
+            if(entryDate.getDayOfYear() == currentDate.getDayOfYear() &&  entryDate.getMonth() == currentDate.getMonth()) {
                     System.out.println(entry);
                     found = true;
-                }
             }
-        }if (!found){
+        }
+        if (!found){
         System.out.println("No transaction found on this Date.");
         }
     }
@@ -100,14 +98,19 @@ public class Reports {
     }
     public static void yearToDate(){
         loadHistory();
+
         int currentYear = LocalDate.now().getYear();
 
         System.out.println("\n=== Year To Date Reports === ");
         boolean found = false;
+
         for (int i = history.size() - 1; i >= 0; i--) {
+
             LedgerApp entry = history.get(i);
+
             String[] section = entry.toString().split("\\|");
             LocalDate entryDate = LocalDate.parse(section[0].trim());
+
             if (entryDate.getYear() == currentYear) {
                 System.out.println(entry);
                 found = true;
@@ -124,7 +127,9 @@ public class Reports {
         boolean found = false;
 
         for(int i = history.size() - 1; i >= 0; i--){
+
             LedgerApp entry = history.get(i);
+
             String[] section = entry.toString().split("\\|");
             LocalDate entryDate = LocalDate.parse(section[0].trim());
 

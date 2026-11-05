@@ -28,7 +28,6 @@ public class LoadHistory {
                 }
             }
             br.close();
-            System.out.println(history);
 
         } catch (FileNotFoundException e) {
             System.out.println("No transaction found yet. please try again later.");
@@ -66,6 +65,7 @@ public class LoadHistory {
     }
     public static void displayWithdraw(){
         loadHistory();
+
         System.out.println("\n=== Payments ===");
         boolean found = false;
         for(int i = history.size()-1; i>=0 ; i--){
