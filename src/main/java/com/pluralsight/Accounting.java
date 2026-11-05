@@ -44,7 +44,7 @@ public static void homeScreen(){
             }
         } while (!choice.equalsIgnoreCase("X"));
 }
-    public static void writer(LedgerApp currentDeposit){
+    public static void writer(Transaction currentDeposit){
         try{
             BufferedWriter br = new BufferedWriter(new FileWriter("transactions.csv", true));
             String current = currentDeposit.toString();
@@ -71,7 +71,7 @@ public static void homeScreen(){
             System.out.print("Please enter the deposit vendor: ");
             String vendor = input.nextLine();
 
-            LedgerApp currentDeposit = new LedgerApp(description,vendor,amount);
+            Transaction currentDeposit = new Transaction(description,vendor,amount);
             System.out.print("Deposit: " + currentDeposit);
 
             writer(currentDeposit);
@@ -94,7 +94,7 @@ public static void homeScreen(){
             System.out.print("Please enter the payment vendor: ");
             String vendor = input.nextLine();
 
-            LedgerApp currentPayment = new LedgerApp(description,vendor,amount);
+            Transaction currentPayment = new Transaction(description,vendor,amount);
             System.out.print("Payment: " + currentPayment);
 
             writer(currentPayment);
@@ -104,8 +104,8 @@ public static void homeScreen(){
         }
     }
     public  static void ledger(){
-        String Lchoice;// stands for ledger choice
-        while(true){
+        String Lchoice = "";// stands for ledger choice
+        while(!Lchoice.equalsIgnoreCase("H")){
             System.out.println(
                     """
                      \n=== Ledger === 
@@ -132,7 +132,6 @@ public static void homeScreen(){
                     Reports.reports();
                     break;
                 case "H":
-                    homeScreen();
                     break;
                 default:
                     System.out.println("please enter a correct letter");

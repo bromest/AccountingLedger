@@ -59,7 +59,7 @@ public class Reports {
 
         for(int i = history.size() - 1 ; i>=0 ; i--){
 
-            LedgerApp entry = history.get(i);
+            Transaction entry = history.get(i);
 
             String[] section = entry.toString().split("\\|");
             LocalDate entryDate = LocalDate.parse(section[0].trim());
@@ -68,6 +68,7 @@ public class Reports {
                     entryDate.getMonthValue() == currentDate.getMonthValue() &&
                     entryDate.getDayOfMonth() == currentDate.getDayOfMonth()) {
                 System.out.println(entry);
+                found = true;
             }
         }
         if (!found){
@@ -83,7 +84,7 @@ public class Reports {
         boolean found = false;
 
         for (int i = history.size() - 1; i >= 0; i--) {
-            LedgerApp entry = history.get(i);
+            Transaction entry = history.get(i);
 
             String[] section = entry.toString().split("\\|");
             LocalDate entryDate = LocalDate.parse(section[0].trim());
@@ -107,7 +108,7 @@ public class Reports {
 
         for (int i = history.size() - 1; i >= 0; i--) {
 
-            LedgerApp entry = history.get(i);
+            Transaction entry = history.get(i);
 
             String[] section = entry.toString().split("\\|");
             LocalDate entryDate = LocalDate.parse(section[0].trim());
@@ -129,7 +130,7 @@ public class Reports {
 
         for(int i = history.size() - 1; i >= 0; i--){
 
-            LedgerApp entry = history.get(i);
+            Transaction entry = history.get(i);
 
             String[] section = entry.toString().split("\\|");
             LocalDate entryDate = LocalDate.parse(section[0].trim());
@@ -145,7 +146,6 @@ public class Reports {
     }
     public static void byVendor(){
         loadHistory();
-        input.nextLine();
 
         System.out.println("Enter vendor name: ");
         String vendorName = input.nextLine().trim();
@@ -154,9 +154,9 @@ public class Reports {
         boolean found = false;
 
         for (int i = history.size() - 1; i >= 0; i--) {
-            LedgerApp entry = history.get(i);
+            Transaction entry = history.get(i);
 
-            if(entry.getVendor().equalsIgnoreCase(vendorName)){
+            if(entry.getVendor().equals(vendorName.trim())) {
                 System.out.println(entry);
                 found = true;
             }

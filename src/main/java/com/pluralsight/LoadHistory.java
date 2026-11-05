@@ -1,10 +1,13 @@
 package com.pluralsight;
 
 import java.io.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class LoadHistory {
-    static ArrayList<LedgerApp> history = new ArrayList<>();
+    static ArrayList<Transaction> history = new ArrayList<>();
     public static void loadHistory(){
 
         history.clear();
@@ -19,11 +22,13 @@ public class LoadHistory {
                 String[] section = line.split("\\|");
 
                 if (section.length >= 5){
-                    String description = section[2];
-                    String vendor = section[3];
-                    double amount = Double.parseDouble(section[4]);
+                    String description = section[2].trim();
+                    String vendor = section[3].trim();
+                    double amount = Double.parseDouble(section[4].trim());
+                    LocalDate localDate = LocalDate.parse(section[0].trim());
+                    LocalTime localTime = LocalTime.parse(section[1].trim());
 
-                    LedgerApp entry = new LedgerApp(description,vendor,amount);
+                    Transaction entry = new Transaction(description,vendor,amount,localDate,localTime);
                     history.add(entry);
                 }
             }
@@ -54,7 +59,7 @@ public class LoadHistory {
         System.out.println("\n=== Deposits ===");
         boolean found = false;
         for(int i = history.size()-1; i>=0 ; i--){
-            LedgerApp entry = history.get(i);
+            Transaction entry = history.get(i);
             if(entry.getAmount() > 0){
                 System.out.println(entry);
                 found = true;
@@ -69,7 +74,7 @@ public class LoadHistory {
         System.out.println("\n=== Payments ===");
         boolean found = false;
         for(int i = history.size()-1; i>=0 ; i--){
-            LedgerApp entry = history.get(i);
+            Transaction entry = history.get(i);
             if(entry.getAmount() < 0){
                 System.out.println(entry);
                 found = true;

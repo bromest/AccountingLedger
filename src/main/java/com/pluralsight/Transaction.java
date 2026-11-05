@@ -4,20 +4,30 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-public class LedgerApp {
+public class Transaction {
     private static final DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private static final DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HH:mm:ss");
-
+    private LocalDate localDate;
+    private LocalTime localTime;
     private final String description;
     private final String vendor;
     private final double amount;
 
-    public LedgerApp(String description, String vendor, double amount) {
+    public Transaction(String description, String vendor, double amount) {
         this.description = description;
         this.amount = amount;
         this.vendor = vendor;
 
     }
+
+    public Transaction(String description, String vendor, double amount, LocalDate localDate, LocalTime localTime) {
+        this.description = description;
+        this.vendor = vendor;
+        this.amount = amount;
+        this.localDate = localDate;
+        this.localTime = localTime;
+    }
+
     public double getAmount() {
         return amount;
     }
@@ -30,8 +40,8 @@ public class LedgerApp {
     // every data format will be like this
     public String toString() {
         return String.format("%s | %s | %s | %s | %.2f",
-                LocalDate.now().format(dateFormat),
-                LocalTime.now().format(timeFormat),
+                localDate.format(dateFormat),
+                localTime.format(timeFormat),
                 description,
                 vendor,
                 amount);
