@@ -14,7 +14,7 @@ public class LoadHistory {
             String line;
             while ((line = br.readLine()) != null){
 
-                if(line.trim().isEmpty()) continue; // skips empty lines
+                if(line.trim().isEmpty()|| line.toLowerCase().startsWith("date")) continue; // skips empty lines and The title line
 
                 String[] section = line.split("\\|");
 
@@ -78,6 +78,5 @@ public class LoadHistory {
         if(!found){
             System.out.println("No payment found.");
         }
-
     }
 }

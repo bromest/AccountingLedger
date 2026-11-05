@@ -112,7 +112,7 @@ public static void homeScreen(){
                      A. All
                      D. Deposit
                      P. Payment
-                     R. Exit
+                     R. Reports
                      H. Home
                      Choose an option:
                      """
@@ -129,7 +129,7 @@ public static void homeScreen(){
                     LoadHistory.displayWithdraw();
                     break;
                 case "R":
-
+                    Reports.reports();
                     break;
                 case "H":
                     homeScreen();
