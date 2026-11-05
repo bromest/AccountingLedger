@@ -2,3 +2,10 @@ date| time | description | vendor | amount
 2026-11-04 | 14:30:39 | invoice | joe | 1500.00
 2026-11-04 | 14:38:08 | mouse | me | 300.00
 2026-11-05 | 10:54:05 | fun | me | -300.00
+2023-04-16|08:30:15|morning coffee|Starbucks|-5.45
+2023-04-16|12:45:00|client lunch|Chipotle|-32.80
+2023-04-17|09:00:00|Freelance Web Design|Acme Corp|750.00
+2023-04-18|14:20:10|USB-C cable|Best Buy|-19.99
+2023-04-19|16:05:45|Monthly Hosting|DigitalOcean|-20.00
+2023-04-20|11:00:00|Consulting Services|TechStart|1200.00
+2023-04-21|15:30:22|office printer ink|Staples|-45.50

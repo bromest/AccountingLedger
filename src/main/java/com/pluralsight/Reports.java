@@ -47,7 +47,7 @@ public class Reports {
             default:
                 System.out.println("please enter a valid option");
         }
-    } while (rChoice == 0);
+    } while (rChoice != 0);
     }
     public static void monthToDate(){
         loadHistory();
@@ -64,10 +64,10 @@ public class Reports {
             String[] section = entry.toString().split("\\|");
             LocalDate entryDate = LocalDate.parse(section[0].trim());
 
-
-            if(entryDate.getDayOfYear() == currentDate.getDayOfYear() &&  entryDate.getMonth() == currentDate.getMonth()) {
-                    System.out.println(entry);
-                    found = true;
+            if(entryDate.getYear() == currentDate.getYear() &&
+                    entryDate.getMonthValue() == currentDate.getMonthValue() &&
+                    entryDate.getDayOfMonth() == currentDate.getDayOfMonth()) {
+                System.out.println(entry);
             }
         }
         if (!found){
@@ -84,6 +84,7 @@ public class Reports {
 
         for (int i = history.size() - 1; i >= 0; i--) {
             LedgerApp entry = history.get(i);
+
             String[] section = entry.toString().split("\\|");
             LocalDate entryDate = LocalDate.parse(section[0].trim());
 
@@ -115,9 +116,9 @@ public class Reports {
                 System.out.println(entry);
                 found = true;
             }
-            if (!found) {
-                System.out.println("No transaction found this current year.");
-            }
+        }
+        if (!found) {
+            System.out.println("No transaction found this current year.");
         }
     }
     public static void previousYear(){
@@ -137,9 +138,9 @@ public class Reports {
                 System.out.println(entry);
                 found = true;
             }
+        }
             if (!found) {
-                System.out.println("No transaction found this year.");
-            }
+            System.out.println("No transaction found this year.");
         }
     }
     public static void byVendor(){
