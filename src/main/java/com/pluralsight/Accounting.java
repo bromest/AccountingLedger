@@ -2,7 +2,6 @@ package com.pluralsight;
 
 import java.util.Scanner;
 import java.io.*;
-import com.pluralsight.LoadHistory;
 
 public class Accounting {
 
@@ -127,7 +126,7 @@ public static void homeScreen(){
                     LoadHistory.displayDeposit();
                     break;
                 case "P":
-
+                    LoadHistory.displayWithdraw();
                     break;
                 case "R":
 

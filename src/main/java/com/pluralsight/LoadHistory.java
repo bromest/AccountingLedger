@@ -64,4 +64,20 @@ public class LoadHistory {
             System.out.println("No deposited transactions found.");
         }
     }
+    public static void displayWithdraw(){
+        loadHistory();
+        System.out.println("\n=== Payments ===");
+        boolean found = false;
+        for(int i = history.size()-1; i>=0 ; i--){
+            LedgerApp entry = history.get(i);
+            if(entry.getAmount() < 0){
+                System.out.println(entry);
+                found = true;
+            }
+        }
+        if(!found){
+            System.out.println("No payment found.");
+        }
+
+    }
 }
