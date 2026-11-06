@@ -17,15 +17,16 @@ public class Transaction {
         this.description = description;
         this.amount = amount;
         this.vendor = vendor;
-
+        this.localDate = localDate.now();
+        this.localTime = localTime.now();
     }
 
     public Transaction(String description, String vendor, double amount, LocalDate localDate, LocalTime localTime) {
         this.description = description;
         this.vendor = vendor;
         this.amount = amount;
-        this.localDate = localDate;
-        this.localTime = localTime;
+        this.localDate = (localDate != null) ? localDate :localDate.now();
+        this.localTime = (localDate != null) ? localTime :localTime.now();
     }
 
     public double getAmount() {
